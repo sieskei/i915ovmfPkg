@@ -1,0 +1,34 @@
+<domain xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0' type='kvm'>
+
+    <devices>
+        <!-- Output using SPICE with MESA EGL  -->
+        <graphics type="spice">
+            <listen type="none"/>
+            <gl enable="yes"/>
+        </graphics>
+        <video>
+            <model type="none"/>
+        </video>
+
+        <!-- virtual GPU passthrough -->
+        <hostdev mode='subsystem' type='mdev' managed='no' model='vfio-pci' display='on'>
+            <source>
+                <address uuid='1d7f1075-b787-4cbc-a48c-c91243c93224'/>
+            </source>
+        </hostdev>
+    </devices>
+
+    <!-- this goes at the bottom, before closing domain tag -->
+    <qemu:override>
+        <qemu:device alias="hostdev0">
+            <qemu:frontend>
+                <qemu:property name="romfile" type="string" value="/var/lib/libvirt/qemu/drivers/i915ovmf.rom"/> <!-- the rom we built goes here! -->
+                <qemu:property name="x-igd-opregion" type="bool" value="true"/>
+                <qemu:property name="driver" type="string" value="vfio-pci-nohotplug"/>
+                <qemu:property name="ramfb" type="bool" value="true"/>
+                <qemu:property name="xres" type="unsigned" value="1920"/> <!-- change resolution of the driver to what you want -->
+                <qemu:property name="yres" type="unsigned" value="1080"/>
+            </qemu:frontend>
+        </qemu:device>
+    </qemu:override>
+</domain>

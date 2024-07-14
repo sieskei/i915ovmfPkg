@@ -1,7 +1,9 @@
 #!/bin/bash
 source ./config
 
-export PACKAGES_PATH=$WORKSPACE/edk2:$WORKSPACE/edk2-platforms
+#remove test dir
+rm -rf "$TEST_DIR"
 
+#remove build dir
 cd $WORKSPACE
 rm -rf Build

@@ -1,7 +1,5 @@
-/ref
-/disk
 *.o
 *.rom
-i915Install
 config
-config
+@BUILD
+@TEST
