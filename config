@@ -7,8 +7,12 @@ export TEST_DIR="@TEST"
 export WORKSPACE="$REPO_DIR/@BUILD"
 
 #change the below paths to point to edk2 & edk2-platforms repos
-export EDK2_PATH="$REPO_DIR/../edk2"
-export EDK2_PLATFORMS_PATH="$REPO_DIR/../edk2-platforms"
+if [ -z "$EDK2_PATH" ]; then
+    export EDK2_PATH="$REPO_DIR/../edk2"
+fi
+if [ -z "$EDK2_PLATFORMS_PATH" ]; then
+    export EDK2_PLATFORMS_PATH="$REPO_DIR/../edk2-platforms"
+fi
 
 #you can make up a uuid, change the rest if needed
 export VIRT_GPU_UUID="3619fb61-cd4a-41d9-bd70-d0a7ea735388"
