@@ -2,7 +2,9 @@
 
 source ./config
 
-#set -e
+set -e
+
+mkdir -p "$WORKSPACE"
 
 if [ ! -L "$WORKSPACE/i915ovmfPkg" ]; then
     echo "configuring workspace"
