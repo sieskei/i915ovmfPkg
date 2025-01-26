@@ -54,7 +54,8 @@
   INTEL:RELEASE_*_*_CC_FLAGS           = /D MDEPKG_NDEBUG
   MSFT:RELEASE_*_*_CC_FLAGS            = /D MDEPKG_NDEBUG
 !if $(TOOL_CHAIN_TAG) != "XCODE5"
-  GCC:*_*_*_CC_FLAGS                   = -mno-mmx -mno-sse
+  GCC:*_*_*_CC_FLAGS                   = -mno-mmx -mno-sse -fno-stack-protector
+#  GCC:*_*_*_LD_FLAGS                   = -lssp -lstack_guard.obj
 !endif
 !ifdef $(SOURCE_DEBUG_ENABLE)
   MSFT:*_*_X64_GENFW_FLAGS  = --keepexceptiontable
