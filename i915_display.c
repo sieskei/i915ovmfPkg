@@ -371,6 +371,9 @@ static EFI_STATUS setOutputPath(i915_CONTROLLER *controller, UINT32 found)
         }
         return EFI_NOT_FOUND;
     }
+
+    PRINT_DEBUG(EFI_D_ERROR, "setOutputPath: controller->opRegion->numChildren == %d\n", controller->opRegion->numChildren);
+
     for (int i = 0; i < controller->opRegion->numChildren; i++)
     {
         EDID *result;
